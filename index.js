@@ -8,7 +8,7 @@ function httpGetAsync(theUrl, callback)
             callback(requester.responseText);
             if(requester.readyState == 4 && requester.status == 404){
         document.querySelector(".container-card").innerHTML = `
-        <div class="card-err contenedor " style="width: 32rem; background-color: rgb(238, 142, 161);color:red; text-align: center;">
+        <div class="card-err contenedor " style="width: 32rem; background-color: rgb(238, 142, 161); color:red; text-align: center;">
                    
             
                 <div class="row no-gutters no-user" >
@@ -42,7 +42,7 @@ function imprimirRepos(responseText) {
         `
         
         document.querySelector(".list-group").innerHTML +=  newHtml; 
-        
+
    }
 }
 
@@ -51,8 +51,7 @@ function imprimirUsuario(responseText) {
     let respuestaParseada = JSON.parse(responseText)
 
         document.querySelector(".container-card").innerHTML =`
-        
-                   
+              
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="img col-md-4">
@@ -76,33 +75,24 @@ function imprimirUsuario(responseText) {
         
         `
 
-
-   
     let usuario = document.querySelector(".input-serch").value;
     
     httpGetAsync("https://api.github.com/users/" + usuario+ "/repos", imprimirRepos)  
-    
-    
+   
 }
 
 
 document.querySelector(".btn-serch").addEventListener('click',()=>{
-    
  
     let usuario = document.querySelector(".input-serch").value;
     
-    
     httpGetAsync("https://api.github.com/users/" + usuario, imprimirUsuario)  
-    
 })
 
-var input = document.querySelector(".input-serch").addEventListener("keyup", function(event) {
+/*var input = document.querySelector(".input-serch").addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
    event.preventDefault();
    document.querySelector(".btn-serch").click();
   }
-});
+});*/
 
-function limpiar(){
-    document.querySelector(".calculator-screen").value = "";
-}
